@@ -4,44 +4,25 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     </head>
     <body>
-        <div align="center">Hello World! V1</div>
+        <div align="center">Hello World! V2</div>
 
-        <a id="liveagent_button_online_573DK000000L0em" href="javascript://Chat" style="display: none;" onclick="liveagent.startChat('573DK000000L0em')"><!-- Online Chat Content --></a>
-        <div id="liveagent_button_offline_573DK000000L0em" style="display: none;"><!-- Offline Chat Content --></div>
-        <script type="text/javascript">
-            if (!window._laq) { window._laq = []; }
-            window._laq.push(function(){liveagent.showWhenOnline('573DK000000L0em', document.getElementById('liveagent_button_online_573DK000000L0em'));
-            liveagent.showWhenOffline('573DK000000L0em', document.getElementById('liveagent_button_offline_573DK000000L0em'));
-            });
-        </script>
-        
-        <!--<div align="center">Hello World! Section 02</div>-->
-
-        <script type='text/javascript' src='https://service.force.com/embeddedservice/menu/fab.min.js'></script>
         <script type='text/javascript'>
-            var initESW = function(gslbBaseURL) {
-                // Required if you want labels in a language that’s different from your user’s context.
-                //embedded_svc.menu.settings.language = ''; //For example, enter 'en' or 'en-US'
-
-                embedded_svc.menu.init(
-                    'https://cgtspa--devms.sandbox.my.salesforce.com',
-                    'https://d.la1-c1cs-ia6.salesforceliveagent.com/chat',
-                    gslbBaseURL,
-                    '00DDK000000HM1L',
-                    'CGT_PCC_ChatBot'
-                );
+            function initEmbeddedMessaging() {
+                try {
+                    embeddedservice_bootstrap.settings.language = 'it'; // For example, enter 'en' or 'en-US'
+                    embeddedservice_bootstrap.init(
+                        '00DDK000000HM1L',
+                        'Chatbot_Altervista',
+                        'https://cgtspa--devms.sandbox.my.site.com/ESWChatbotAltervista1696323115518',
+                        {
+                            scrt2URL: 'https://cgtspa--devms.sandbox.my.salesforce-scrt.com'
+                        }
+                    );
+                } catch (err) {
+                    console.error('Error loading Embedded Messaging: ', err);
+                }
             };
-
-            if (!window.embedded_svc || !window.embedded_svc.menu) {
-                var s = document.createElement('script');
-                s.setAttribute('src', 'https://cgtspa--devms.sandbox.my.salesforce.com/embeddedservice/menu/fab.min.js');
-                s.onload = function() {
-                    initESW(null);
-                };
-                document.body.appendChild(s);
-            } else {
-                initESW('https://service.force.com');
-            }
         </script>
+        <script type='text/javascript' src='https://cgtspa--devms.sandbox.my.site.com/ESWChatbotAltervista1696323115518/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
     </body>
 </html>

@@ -4,10 +4,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     </head>
     <body>
-        <div align="center">Hello World! Section 01</div>
+        <div align="center">Hello World!</div>
 
         <a id="liveagent_button_online_573DK000000L0em" href="javascript://Chat" style="display: none;" onclick="liveagent.startChat('573DK000000L0em')"><!-- Online Chat Content --></a>
-        <div id="liveagent_button_offline_573DK000000L0em"><!-- Offline Chat Content --></div>
+        <div id="liveagent_button_offline_573DK000000L0em" style="display: none;"><!-- Offline Chat Content --></div>
         <script type="text/javascript">
             if (!window._laq) { window._laq = []; }
             window._laq.push(function(){liveagent.showWhenOnline('573DK000000L0em', document.getElementById('liveagent_button_online_573DK000000L0em'));
@@ -17,60 +17,24 @@
         
         <!--<div align="center">Hello World! Section 02</div>-->
 
-        <style type='text/css'>
-            .embeddedServiceHelpButton .helpButton .uiButton {
-                background-color: #005290;
-                font-family: "Arial", sans-serif;
-            }
-            .embeddedServiceHelpButton .helpButton .uiButton:focus {
-                outline: 1px solid #005290;
-            }
-        </style>
-        
-        <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+        <script type='text/javascript' src='https://service.force.com/embeddedservice/menu/fab.min.js'></script>
         <script type='text/javascript'>
             var initESW = function(gslbBaseURL) {
-                embedded_svc.settings.displayHelpButton = true; //Or false
-                embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
-        
-                //embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
-                //embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
-        
-                //embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
-                //embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
-        
-                // Settings for Chat
-                //embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
-                    // Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
-                    // Returns a valid button ID.
-                //};
-                //embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
-                //embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
-                //embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
-        
-                embedded_svc.settings.enabledFeatures = ['LiveAgent'];
-                embedded_svc.settings.entryFeature = 'LiveAgent';
-        
-                embedded_svc.init(
+                // Required if you want labels in a language that’s different from your user’s context.
+                //embedded_svc.menu.settings.language = ''; //For example, enter 'en' or 'en-US'
+
+                embedded_svc.menu.init(
                     'https://cgtspa--devms.sandbox.my.salesforce.com',
-                    'https://cgtspa--devms.sandbox.my.site.com/ESWChatbotAltervista1696323115518vforces',
+                    'https://d.la1-c1cs-ia6.salesforceliveagent.com/chat',
                     gslbBaseURL,
                     '00DDK000000HM1L',
-                    'Chatbot_Altervista_V2',
-                    {
-                        baseLiveAgentContentURL: 'https://c.la1-c1cs-ia6.salesforceliveagent.com/content',
-                        deploymentId: '572DK000000Go7N',
-                        buttonId: '573DK000000L0em',
-                        baseLiveAgentURL: 'https://d.la1-c1cs-ia6.salesforceliveagent.com/chat',
-                        eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04IDK000000GmuO2AS_18afb1047b8',
-                        isOfflineSupportEnabled: true
-                    }
+                    'CGT_PCC_ChatBot'
                 );
             };
-        
-            if (!window.embedded_svc) {
+
+            if (!window.embedded_svc || !window.embedded_svc.menu) {
                 var s = document.createElement('script');
-                s.setAttribute('src', 'https://cgtspa--devms.sandbox.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+                s.setAttribute('src', 'https://cgtspa--devms.sandbox.my.salesforce.com/embeddedservice/menu/fab.min.js');
                 s.onload = function() {
                     initESW(null);
                 };

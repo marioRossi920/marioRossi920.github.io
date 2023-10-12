@@ -1,138 +1,33 @@
 <html>
     <head>
         <title>Chatbot_GitHub</title>
-        <!--  ----------------------------------------------------------------------  -->
-        <!--  NOTE: Please add the following <META> element to your page <HEAD>.      -->
-        <!--  If necessary, please modify the charset parameter to specify the        -->
-        <!--  character set of your HTML page.                                        -->
-        <!--  ----------------------------------------------------------------------  -->
         
-        <META HTTP-EQUIV="Content-type" CONTENT="text/html; charset=UTF-8">
-        
-        <!--  ----------------------------------------------------------------------  -->
-        <!--  NOTE: Please add the following <FORM> element to your page.             -->
-        <!--  ----------------------------------------------------------------------  -->
-        
-        <form action="https://test.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST">
-        
-        <input type=hidden name="oid" value="00DDH00000057Ze">
-        <input type=hidden name="retURL" value="https://mariorossi920.github.io/">
-        <input type=hidden name="recordType" id="recordType" value="012DH00000379oW">
-        
-        <!--  ----------------------------------------------------------------------  -->
-        <!--  NOTE: These fields are optional debugging elements. Please uncomment    -->
-        <!--  these lines if you wish to test in debug mode.                          -->
-        <!--  <input type="hidden" name="debug" value=1>                              -->
-        <!--  <input type="hidden" name="debugEmail"                                  -->
-        <!--  value="m.nigra@balanceconsulting.it">                                   -->
-        <!--  ----------------------------------------------------------------------  -->
-        
-        <label for="first_name">First Name</label><input  id="first_name" maxlength="40" name="first_name" size="20" type="text" /><br>
-        
-        <label for="last_name">Last Name</label><input  id="last_name" maxlength="80" name="last_name" size="20" type="text" /><br>
-        
-        <label for="email">Email</label><input  id="email" maxlength="80" name="email" size="20" type="text" /><br>
-        
-        <label for="company">Company</label><input  id="company" maxlength="40" name="company" size="20" type="text" /><br>
-        
-        Partita Iva:<input  id="00NDH00000PsGXZ" maxlength="11" name="00NDH00000PsGXZ" size="20" type="text" /><br>
-        
-        <label for="phone">Phone</label><input  id="phone" maxlength="40" name="phone" size="20" type="text" /><br>
-        
-        <label for="zip">Zip</label><input  id="zip" maxlength="20" name="zip" size="20" type="text" /><br>
-        
-        <label for="city">City</label><input  id="city" maxlength="40" name="city" size="20" type="text" /><br>
-        
-        <label for="state">State/Province</label><input  id="state" maxlength="20" name="state" size="20" type="text" /><br>
-        
-        Tipologia Di Prodotto Richiesto:<select  id="00NDH00000PsGXw" name="00NDH00000PsGXw" title="Tipologia Di Prodotto Richiesto"><option value="">--None--</option><option value="Macchine movimento terra grandi">Macchine movimento terra grandi</option>
-        <option value="Macchine movimento terra compatte">Macchine movimento terra compatte</option>
-        <option value="Macchine per industria e/o recycling">Macchine per industria e/o recycling</option>
-        <option value="Movimentatori telescopici">Movimentatori telescopici</option>
-        <option value="Generazione energia">Generazione energia</option>
-        <option value="Impianti di cogenerazione">Impianti di cogenerazione</option>
-        <option value="Marino commerciale">Marino commerciale</option>
-        <option value="Marino da diporto">Marino da diporto</option>
-        <option value="Motori industriali">Motori industriali</option>
-        <option value="Oil &amp; gas">Oil &amp; gas</option>
-        </select><br>
-        
-        Famiglia di Prodotti / Soluzioni:<select  id="00NDH00000Q0QT1" name="00NDH00000Q0QT1" title="Famiglia di Prodotti / Soluzioni"><option value="">--None--</option><option value="Placeholder 01">Placeholder 01</option>
-        <option value="Placeholder 02">Placeholder 02</option>
-        </select><br>
-        
-        <label for="description">Description</label><textarea name="description"></textarea><br>
-        
-        <input type="submit" name="submit">
-        
-        </form>
-
     </head>
     <body>
-        <div align="center">Hello SBOT! V3 CHAT</div>
+        <div align="center">Hello SBOT! V3 MESSAGING</div>
 
-        <style type='text/css'>
-        	.embeddedServiceHelpButton .helpButton .uiButton {
-        		background-color: #005290;
-        		font-family: "Arial", sans-serif;
-        	}
-        	.embeddedServiceHelpButton .helpButton .uiButton:focus {
-        		outline: 1px solid #005290;
-        	}
-        </style>
-        
-        <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+
         <script type='text/javascript'>
-        	var initESW = function(gslbBaseURL) {
-        		embedded_svc.settings.displayHelpButton = true; //Or false
-        		embedded_svc.settings.language = ''; //For example, enter 'en' or 'en-US'
+        	function initEmbeddedMessaging() {
+        		try {
+        			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
         
-        		//embedded_svc.settings.defaultMinimizedText = '...'; //(Defaults to Chat with an Expert)
-        		//embedded_svc.settings.disabledMinimizedText = '...'; //(Defaults to Agent Offline)
-        
-        		//embedded_svc.settings.loadingText = ''; //(Defaults to Loading)
-        		//embedded_svc.settings.storageDomain = 'yourdomain.com'; //(Sets the domain for your deployment so that visitors can navigate subdomains during a chat session)
-        
-        		// Settings for Chat
-        		//embedded_svc.settings.directToButtonRouting = function(prechatFormData) {
-        			// Dynamically changes the button ID based on what the visitor enters in the pre-chat form.
-        			// Returns a valid button ID.
-        		//};
-        		//embedded_svc.settings.prepopulatedPrechatFields = {}; //Sets the auto-population of pre-chat form fields
-        		//embedded_svc.settings.fallbackRouting = []; //An array of button IDs, user IDs, or userId_buttonId
-        		//embedded_svc.settings.offlineSupportMinimizedText = '...'; //(Defaults to Contact Us)
-        
-        		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
-        		embedded_svc.settings.entryFeature = 'LiveAgent';
-        
-        		embedded_svc.init(
-        			'https://empathetic-unicorn-f21zqw-dev-ed.trailblaze.my.salesforce.com',
-        			'https://empathetic-unicorn-f21zqw-dev-ed.trailblaze.my.site.com/ESWMessagingDeployment1697098375192vforc',
-        			gslbBaseURL,
-        			'00D07000000Lt7G',
-        			'Chat_Deployment',
-        			{
-        				baseLiveAgentContentURL: 'https://c.la3-c2-cdg.salesforceliveagent.com/content',
-        				deploymentId: '57207000000oO9c',
-        				buttonId: '57307000000saQd',
-        				baseLiveAgentURL: 'https://d.la3-c2-cdg.salesforceliveagent.com/chat',
-        				eswLiveAgentDevName: 'EmbeddedServiceLiveAgent_Parent04I07000000kAxuEAE_18b22f8fb4b',
-        				isOfflineSupportEnabled: true
-        			}
-        		);
+        			embeddedservice_bootstrap.init(
+        				'00D07000000Lt7G',
+        				'SBOT_Deploymnet',
+        				'https://empathetic-unicorn-f21zqw-dev-ed.trailblaze.my.site.com/ESWSBOTDeploymnet1696516380896',
+        				{
+        					scrt2URL: 'https://empathetic-unicorn-f21zqw-dev-ed.trailblaze.my.salesforce-scrt.com'
+        				}
+        			);
+        		} catch (err) {
+        			console.error('Error loading Embedded Messaging: ', err);
+        		}
         	};
-        
-        	if (!window.embedded_svc) {
-        		var s = document.createElement('script');
-        		s.setAttribute('src', 'https://empathetic-unicorn-f21zqw-dev-ed.trailblaze.my.salesforce.com/embeddedservice/5.0/esw.min.js');
-        		s.onload = function() {
-        			initESW(null);
-        		};
-        		document.body.appendChild(s);
-        	} else {
-        		initESW('https://service.force.com');
-        	}
         </script>
+        <script type='text/javascript' src='https://empathetic-unicorn-f21zqw-dev-ed.trailblaze.my.site.com/ESWSBOTDeploymnet1696516380896/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
+        
 
     </body>
 </html>

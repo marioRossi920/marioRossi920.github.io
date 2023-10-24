@@ -4,9 +4,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     </head>
     <body>
-        <div align="center">DevSRV BOT</div>
-        <!--<div align="center">DevSRV FORM</div>-->
+        <div align="center">DevMerge BOT</div>
 
+        <script type='text/javascript'>
+        	function initEmbeddedMessaging() {
+        		try {
+        			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+        
+        			embeddedservice_bootstrap.init(
+        				'00DDH00000057Ze',
+        				'CGT_Bot_Web_Deployment',
+        				'https://cgtspa--devmerge.sandbox.my.site.com/ESWCGTBotWebDeployment1697542037993',
+        				{
+        					scrt2URL: 'https://cgtspa--devmerge.sandbox.my.salesforce-scrt.com'
+        				}
+        			);
+        		} catch (err) {
+        			console.error('Error loading Embedded Messaging: ', err);
+        		}
+        	};
+        </script>
+        <script type='text/javascript' src='https://cgtspa--devmerge.sandbox.my.site.com/ESWCGTBotWebDeployment1697542037993/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+
+        
+        <!--
+        <div align="center">DevSRV BOT</div>
 
         <script type='text/javascript'>
         	function initEmbeddedMessaging() {
@@ -28,7 +50,7 @@
         	};
         </script>
         <script type='text/javascript' src='https://cgtspa--devsrv.sandbox.my.site.com/ESWCGTBotWebDeployment1697542037993/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
-
+        -->
 
     </body>
 </html>

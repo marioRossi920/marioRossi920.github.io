@@ -8,22 +8,28 @@
         <div align="center">DevMerge BOT - Hidden Pre-Chat V1</div>
 
         <script type='text/javascript'>
-            // Pre-chat event listener
-            window.addEventListener("onEmbeddedMessagingReady", () => {
-                console.log("Received the onEmbeddedMessagingReady event…");
             
-                // Send data to Salesforce
+            // Pre-chat event listener. Add this somewhere inside the page where the 
+            window.addEventListener("onEmbeddedMessagingReady", () => {
+                console.log("Received the onEmbeddedMessagingReady event");
+            
+                // Fill these values through JavaScript to send data to Salesforce
+                // All fields must be of type String and no longer than 100 characters
                 embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-                    "UserId" : "11098324"
+                    "UserId" : "", // CAT User Identifier (Unique Key)
+                    "AccountId" : "", // CAT Customer Identifier (Unique Key)
+                    "FirstName" : "", // User First Name
+                    "LastName" : "", // User Last Name
+                    "Email" : "" // User Email
                 });
             
-                // Remove any items from the previous list that you don't want to send
+                // If necessary, remove any items from the previous list that you don't want to send
                 //embeddedservice_bootstrap.prechatAPI.removeHiddenPrechatFields(["Customer_ID"]);
             });
             
         	function initEmbeddedMessaging() {
         		try {
-        			embeddedservice_bootstrap.settings.language = 'it'; // For example, enter 'en' or 'en-US'
+        			embeddedservice_bootstrap.settings.language = 'it'; // Set Language
         
         			embeddedservice_bootstrap.init(
         				'00DDH00000057Ze',

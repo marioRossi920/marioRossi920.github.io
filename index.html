@@ -5,9 +5,22 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT</div>
+        <div align="center">DevMerge BOT - Hidden Pre-Chat V1</div>
 
         <script type='text/javascript'>
+            // Pre-chat event listener
+            window.addEventListener("onEmbeddedMessagingReady", () => {
+                console.log("Received the onEmbeddedMessagingReady event…");
+            
+                // Send data to Salesforce
+                embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
+                    "UserId" : "11098324"
+                });
+            
+                // Remove any items from the previous list that you don't want to send
+                //embeddedservice_bootstrap.prechatAPI.removeHiddenPrechatFields(["Customer_ID"]);
+            });
+            
         	function initEmbeddedMessaging() {
         		try {
         			embeddedservice_bootstrap.settings.language = 'it'; // For example, enter 'en' or 'en-US'

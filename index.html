@@ -4,8 +4,39 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
     </head>
     <body>
+
+        <div align="center">Trailhead BOT - V1</div>
         
-        <div align="center">DevMerge BOT - Hidden Pre-Chat V3</div>
+        <script type='text/javascript' src='https://service.force.com/embeddedservice/menu/fab.min.js'></script>
+        <script type='text/javascript'>
+        	var initESW = function(gslbBaseURL) {
+        		// Required if you want labels in a language that’s different from your user’s context.
+        		//embedded_svc.menu.settings.language = ''; //For example, enter 'en' or 'en-US'
+        
+        		embedded_svc.menu.init(
+        			'https://cunning-hawk-p3bqf9-dev-ed.trailblaze.my.salesforce.com',
+        			'https://d.la3-c1-fra.salesforceliveagent.com/chat',
+        			gslbBaseURL,
+        			'00D7R000005GlWh',
+        			'Botty'
+        		);
+        	};
+        
+        	if (!window.embedded_svc || !window.embedded_svc.menu) {
+        		var s = document.createElement('script');
+        		s.setAttribute('src', 'https://cunning-hawk-p3bqf9-dev-ed.trailblaze.my.salesforce.com/embeddedservice/menu/fab.min.js');
+        		s.onload = function() {
+        			initESW(null);
+        		};
+        		document.body.appendChild(s);
+        	} else {
+        		initESW('https://service.force.com');
+        	}
+        </script>
+
+
+        
+        <!--<div align="center">DevMerge BOT - Hidden Pre-Chat V3</div>
 
         <script type='text/javascript'>
             
@@ -45,7 +76,7 @@
         	};
         </script>
         <script type='text/javascript' src='https://cgtspa--devmerge.sandbox.my.site.com/ESWCGTBotWebDeployment1697542037993/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
-        
+        -->
         
         <!--
         <div align="center">DevSRV BOT</div>

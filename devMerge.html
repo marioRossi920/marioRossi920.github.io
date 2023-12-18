@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V7</div>
+        <div align="center">DevMerge BOT - V8</div>
 
         <script type='text/javascript'>
             
@@ -32,8 +32,9 @@
                 // Set ChatBot Icon
                 var setChatBotIcon = setInterval(function(){
                     console.log("Checking...");
-                    if(document.getElementById("embeddedMessagingConversationButton") != null){ // Check if element has been found
+                    if(document.getElementById("embeddedMessagingConversationButton") != null && document.getElementById("embeddedMessagingIconContainer") != null){ // Check if element has been found
                         console.log("Found!");
+                        document.getElementById("embeddedMessagingIconContainer").remove();
                         document.getElementById("embeddedMessagingConversationButton").style.backgroundColor = "red";
                         document.getElementById("embeddedMessagingConversationButton").innerHTML += '<img src="ChatBotIcon2.png"/>';
                     }

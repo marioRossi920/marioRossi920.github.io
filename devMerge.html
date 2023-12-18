@@ -6,18 +6,13 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V9</div>
+        <div align="center">DevMerge BOT - V10</div>
 
         <script type='text/javascript'>
             
             // Pre-chat event listener. Add this somewhere inside the page where the 
             window.addEventListener("onEmbeddedMessagingReady", () => {
                 console.log("Received the onEmbeddedMessagingReady event");
-
-                console.log("element1: "+document.getElementById("embeddedMessagingConversationButton"));
-                //console.log("element style1: "+document.getElementById("embeddedMessagingConversationButton").style);
-                //document.getElementById("embeddedMessagingConversationButton").style.backgroundColor = "red";
-                
             
                 // Fill these values through JavaScript to send data to Salesforce
                 // All fields must be of type String and no longer than 100 characters
@@ -32,9 +27,9 @@
                 // Set ChatBot Icon
                 var setChatBotIcon = setInterval(function(){
                     console.log("Checking...");
-                    if(document.getElementById("embeddedMessagingConversationButton") != null && document.getElementById("embeddedMessagingIconContainer") != null){ // Check if element has been found
+                    if(document.getElementById("embeddedMessagingConversationButton") != null){ // Check if element has been found
                         console.log("Found!");
-                        document.getElementById("embeddedMessagingIconContainer").remove();
+                        document.getElementById("embeddedMessagingIconContainer").style.display = "none";
                         document.getElementById("embeddedMessagingConversationButton").innerHTML += '<img src="ChatBotIcon2.png"/>';
                     }
                 },100);

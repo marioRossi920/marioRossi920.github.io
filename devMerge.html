@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V1</div>
+        <div align="center">DevMerge BOT - V2</div>
 
         <script type='text/javascript'>
             
@@ -15,8 +15,8 @@
                 console.log("Received the onEmbeddedMessagingReady event");
 
                 console.log("element1: "+document.getElementById("embeddedMessagingConversationButton"));
-                console.log("element style1: "+document.getElementById("embeddedMessagingConversationButton").style);
-                document.getElementById("embeddedMessagingConversationButton").style = "background-color:pink";
+                //console.log("element style1: "+document.getElementById("embeddedMessagingConversationButton").style);
+                //document.getElementById("embeddedMessagingConversationButton").style.backgroundColor = "red";
                 
             
                 // Fill these values through JavaScript to send data to Salesforce
@@ -33,7 +33,7 @@
                   .then(function (success) {
                     console.log("element2: "+document.getElementById("embeddedMessagingConversationButton"));
                     console.log("element style2: "+document.getElementById("embeddedMessagingConversationButton").style);
-                    document.getElementById("embeddedMessagingConversationButton").style = "background-color:pink";
+                    document.getElementById("embeddedMessagingConversationButton").style.backgroundColor = "red";
                   })
             
                 // If necessary, remove any items from the previous list that you don't want to send

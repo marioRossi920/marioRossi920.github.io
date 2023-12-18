@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V3</div>
+        <div align="center">DevMerge BOT - V4</div>
 
         <script type='text/javascript'>
             
@@ -29,19 +29,18 @@
                     "Email" : "" // User Email
                 });
 
-                var checkContents = setInterval(function(){
+                // Set ChatBot Icon
+                var setChatBotIcon = setInterval(function(){
                     console.log("Checking...");
                     if(document.getElementById("embeddedMessagingConversationButton") != null){ // Check if element has been found
                         console.log("Found!");
                         document.getElementById("embeddedMessagingConversationButton").style.backgroundColor = "red";
                     }
-                },1000);
-                /*embeddedservice_bootstrap.utilAPI
-                  .then(function (success) {
-                    console.log("element2: "+document.getElementById("embeddedMessagingConversationButton"));
-                    console.log("element style2: "+document.getElementById("embeddedMessagingConversationButton").style);
-                    document.getElementById("embeddedMessagingConversationButton").style.backgroundColor = "red";
-                  })*/
+                },100);
+                setTimeout(function(){
+                    clearInterval(setChatBotIcon); 
+                    console.log("Removed check");
+                }, 1000);
             
                 // If necessary, remove any items from the previous list that you don't want to send
                 //embeddedservice_bootstrap.prechatAPI.removeHiddenPrechatFields(["Customer_ID"]);

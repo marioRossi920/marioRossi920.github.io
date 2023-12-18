@@ -6,13 +6,16 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT</div>
+        <div align="center">DevMerge BOT - V0</div>
 
         <script type='text/javascript'>
             
             // Pre-chat event listener. Add this somewhere inside the page where the 
             window.addEventListener("onEmbeddedMessagingReady", () => {
                 console.log("Received the onEmbeddedMessagingReady event");
+
+                document.getElementById("embeddedMessagingConversationButton").style = "background-color:pink";
+                
             
                 // Fill these values through JavaScript to send data to Salesforce
                 // All fields must be of type String and no longer than 100 characters

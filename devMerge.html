@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V12</div>
+        <div align="center">DevMerge BOT - V14</div>
 
         <script type='text/javascript'>
             
@@ -28,25 +28,36 @@
                 let changeMap = new Map();
                 changeMap.set("icon", true);
                 changeMap.set("z-index", true);
+                changeMap.set("position", true);
+                console.log("Setting specs...");
                 let setChatSpecs = setInterval(function(){
-                    console.log("Setting specs...");
                     // Set z-index
                     if(changeMap.get("z-index") && document.getElementById("embedded-messaging") != null){
                         console.log("Setting z-index");
                         changeMap.set("z-index", false);
                         document.getElementById("embedded-messaging").style.zindex = "1000";
                     }
-                    // Set icon
+                    // Set icon & button position
                     if(changeMap.get("icon") && document.getElementById("embeddedMessagingConversationButton") != null){
-                        console.log("Setting icon");
+                        console.log("Setting icon & button position");
                         changeMap.set("icon", false);
                         document.getElementById("embeddedMessagingIconContainer").style.display = "none";
+                        document.getElementById("embeddedMessagingConversationButton").box.style.top = "150px";
                         document.getElementById("embeddedMessagingConversationButton").innerHTML += '<img src="IconTop+TextBelow-LG@1x.png"/>';
+                        // Set Position
+                        document.getElementById("embeddedMessagingConversationButton").style.bottom = "0";
+                        document.getElementById("embeddedMessagingConversationButton").style.right = "0";
+                        document.getElementById("embeddedMessagingConversationButton").style.top = "280px";
+                        document.getElementById("embeddedMessagingConversationButton").style.width = "48px";
+                        document.getElementById("embeddedMessagingConversationButton").style.height = "48px";
+                        /*var buttonElements = document.getElementsByClassName("embeddedMessagingConversationButton");
+                        for(i = 0; i < buttonElements.length; i++) {
+                            buttonElements[i].style.display = "none";
+                        }*/
                     }
                 }, 50);
                 setTimeout(function(){
                     clearInterval(setChatSpecs); 
-                    console.log("Removed check");
                 }, 5000);
             });
             

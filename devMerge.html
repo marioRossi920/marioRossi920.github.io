@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V18</div>
+        <div align="center">DevMerge BOT - V19</div>
 
         <script type='text/javascript'>
             
@@ -43,8 +43,10 @@
                         changeMap.set("button", false);
                         document.getElementById("embeddedMessagingIconContainer").style.display = "none";
                         document.getElementById("embeddedMessagingConversationButton").style.boxShadow = "";
-                        //document.getElementById("embeddedMessagingConversationButton").innerHTML += '<img src="IconTop+TextBelow-LG@1x.png"/>';
-                        document.getElementById("embeddedMessagingIconChat").innerHTML = '<img src="IconTop+TextBelow-LG@1x.png"/>';
+
+                        let img = document.createElement('img');
+                        img.src = "IconTop+TextBelow-LG@1x.png";
+                        document.getElementById("embeddedMessagingIconContainer").appendChild(img);
                         // Set position
                         /*document.getElementById("embeddedMessagingConversationButton").style.bottom = "0";
                         document.getElementById("embeddedMessagingConversationButton").style.right = "0";

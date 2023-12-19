@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V11</div>
+        <div align="center">DevMerge BOT - V12</div>
 
         <script type='text/javascript'>
             
@@ -24,22 +24,30 @@
                     "Email" : "" // User Email
                 });
 
-                // Set ChatBot Icon
-                /*var setChatBotIcon = setInterval(function(){
-                    console.log("Checking...");
-                    if(document.getElementById("embeddedMessagingConversationButton") != null){ // Check if element has been found
-                        console.log("Found!");
-                        document.getElementById("embeddedMessagingIconContainer").style.display = "none";
-                        document.getElementById("embeddedMessagingConversationButton").innerHTML += '<img src="ChatBotIcon2.png"/>';
+                // Set ChatBot Specs
+                let changeMap = new Map();
+                changeMap.set("icon", true);
+                changeMap.set("z-index", true);
+                let setChatSpecs = setInterval(function(){
+                    console.log("Setting specs...");
+                    // Set z-index
+                    if(changeMap.get("z-index") && document.getElementById("embedded-messaging") != null){
+                        console.log("Setting z-index");
+                        changeMap.set("z-index", false);
+                        document.getElementById("embedded-messaging").style.zindex = "1000";
                     }
-                },100);
+                    // Set icon
+                    if(changeMap.get("icon") && document.getElementById("embeddedMessagingConversationButton") != null){
+                        console.log("Setting icon");
+                        changeMap.set("icon", false);
+                        document.getElementById("embeddedMessagingIconContainer").style.display = "none";
+                        document.getElementById("embeddedMessagingConversationButton").innerHTML += '<img src="IconTop+TextBelow-LG@1x.png"/>';
+                    }
+                }, 50);
                 setTimeout(function(){
-                    clearInterval(setChatBotIcon); 
+                    clearInterval(setChatSpecs); 
                     console.log("Removed check");
-                }, 1000);*/
-            
-                // If necessary, remove any items from the previous list that you don't want to send
-                //embeddedservice_bootstrap.prechatAPI.removeHiddenPrechatFields(["Customer_ID"]);
+                }, 5000);
             });
             
         	function initEmbeddedMessaging() {

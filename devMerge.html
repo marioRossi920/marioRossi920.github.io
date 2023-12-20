@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V24</div>
+        <div align="center">DevMerge BOT - V25</div>
 
         <script type='text/javascript'>
             
@@ -47,12 +47,15 @@
                         //document.getElementById("embeddedMessagingConversationButton").style.boxShadow = "";
                         let img = document.createElement('img');
                         img.src = "IconTop+TextBelow-LG@1x.png";
-                        img.style.position = "absolute";
+                        img.style.position = "fixed";
                         img.style.bottom = "25px";
                         img.style.right = "0px";
+                        
                         document.querySelector(".embeddedMessagingConversationButtonWrapper").appendChild(img);
-                        //document.getElementById("embeddedMessagingConversationButton").appendChild(img);
+                        document.querySelector(".embeddedMessagingConversationButtonWrapper").style.boxShadow = "none";
+
                         document.getElementById("embeddedMessagingConversationButton").style.right = "0";
+                        document.querySelector(".embeddedMessagingConversationButton").style.boxShadow = "none";
                         
                         // Set position
                         /*document.getElementById("embeddedMessagingConversationButton").style.bottom = "0";

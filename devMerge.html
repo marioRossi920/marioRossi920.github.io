@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V25</div>
+        <div align="center">DevMerge BOT - V26</div>
 
         <script type='text/javascript'>
             
@@ -50,6 +50,13 @@
                         img.style.position = "fixed";
                         img.style.bottom = "25px";
                         img.style.right = "0px";
+
+                        img.addEventListener('mouseover', () => {
+                          img.style.filter = 'brightness(150%)';
+                        });
+                        img.addEventListener('mouseout', () => {
+                          img.style.filter = 'brightness(100%)';
+                        });
                         
                         document.querySelector(".embeddedMessagingConversationButtonWrapper").appendChild(img);
                         document.querySelector(".embeddedMessagingConversationButtonWrapper").style.boxShadow = "none";

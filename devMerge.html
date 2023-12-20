@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V28</div>
+        <div align="center">DevMerge BOT - V29</div>
 
         <script type='text/javascript'>
             
@@ -42,27 +42,28 @@
                         // Set size
                         document.getElementById("embeddedMessagingConversationButton").style.width = "48px";
                         document.getElementById("embeddedMessagingConversationButton").style.height = "48px";
-                        // Set icon
-                        //document.getElementById("embeddedMessagingIconContainer").style.display = "none";
-                        //document.getElementById("embeddedMessagingConversationButton").style.boxShadow = "";
+                        // Create icon
                         let img = document.createElement('img');
                         img.src = "IconTop+TextBelow-LG@1x.png";
                         img.style.pointerEvents = "none";
                         img.style.position = "fixed";
                         img.style.bottom = "25px";
                         img.style.right = "0px";
-                        img.addEventListener('mouseover', () => {
-                          img.style.filter = 'brightness(150%)';
+                        // Set buttonWrapper
+                        let buttonWrapper = document.querySelector(".embeddedMessagingConversationButtonWrapper");
+                        buttonWrapper.addEventListener("mouseover", () => {
+                            console.log("mouseover");
+                            buttonWrapper.style.filter = "brightness(0.5)";
                         });
-                        img.addEventListener('mouseout', () => {
-                          img.style.filter = 'brightness(100%)';
+                        buttonWrapper.addEventListener("mouseout", () => {
+                            console.log("mouseout");
+                            buttonWrapper.style.filter = "brightness(1.0)";
                         });
-                        
-                        document.querySelector(".embeddedMessagingConversationButtonWrapper").appendChild(img);
-                        document.querySelector(".embeddedMessagingConversationButtonWrapper").style.boxShadow = "none";
-
+                        buttonWrapper.appendChild(img);
+                        buttonWrapper.style.boxShadow = "none";
+                        // Set button
                         document.getElementById("embeddedMessagingConversationButton").style.right = "0";
-                        document.querySelector(".embeddedMessagingConversationButton").style.boxShadow = "none";
+                        document.getElementById("embeddedMessagingConversationButton").style.boxShadow = "none";
                         
                         // Set position
                         /*document.getElementById("embeddedMessagingConversationButton").style.bottom = "0";

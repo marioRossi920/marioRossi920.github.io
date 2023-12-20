@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V43</div>
+        <div align="center">DevMerge BOT - V45</div>
 
         <script type='text/javascript'>
             
@@ -132,6 +132,39 @@
         		}
         	};
         </script>
+
+
+        
+        <script>
+            setTimeout(updateButtonMin2, 100);
+            function updateButtonMin2() {
+                let buttonMin = document.querySelector(".minimizedButton,.testExist");
+                console.log('checkDOMChange: '+buttonMin);
+                if(buttonMin == null) {
+                    console.log('still null');
+                    buttonMin = document.getElementById("minimizedButton-18");
+                }
+                console.log(document.body.serializeWithStyles());
+                if(buttonMin != null) {
+                    console.log('FOUND IT!');
+                    buttonMin.style.right = "0";
+                    buttonMin.style.width = "48px";
+                    buttonMin.style.height = "48px";
+                    buttonMin.style.boxShadow = "none";
+                    buttonMin.addEventListener("mouseover", () => {
+                        document.getElementById("buttonIcon").style.filter = "brightness(0.5)";
+                    });
+                    buttonMin.addEventListener("mouseout", () => {
+                        document.getElementById("buttonIcon").style.filter = "brightness(1.0)";
+                    });
+                } else {
+                    setTimeout(updateButtonMin2, 100);
+                }
+            }
+        </script>
+
+
+        
         <script type='text/javascript' src='https://cgtspa--devmerge.sandbox.my.site.com/ESWCGTBotWebDeployment1697542037993/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
     </body>

@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V39</div>
+        <div align="center">DevMerge BOT - V40</div>
 
         <script type='text/javascript'>
             
@@ -55,20 +55,9 @@
                         buttonWrapper.addEventListener("mouseout", () => {
                             document.getElementById("buttonIcon").style.filter = "brightness(1.0)";
                         });
-                        
                         buttonWrapper.addEventListener("click", () => {
-                            updateButtonMin();
-                            let buttonMin = document.querySelector(".minimizedButton");
-                            if(buttonMin != null) {
-                                buttonMin.addEventListener("mouseover", () => {
-                                    document.getElementById("buttonIcon").style.filter = "brightness(0.5)";
-                                });
-                                buttonMin.addEventListener("mouseout", () => {
-                                    document.getElementById("buttonIcon").style.filter = "brightness(1.0)";
-                                });
-                            }
+                            setTimeout(updateButtonMin, 200);
                         });
-                        
                         buttonWrapper.appendChild(img);
                         buttonWrapper.style.boxShadow = "none";
                         // Set button
@@ -93,6 +82,14 @@
                         buttonMin.style.width = "48px";
                         buttonMin.style.height = "48px";
                         buttonMin.style.boxShadow = "none";
+                        buttonMin.addEventListener("mouseover", () => {
+                            document.getElementById("buttonIcon").style.filter = "brightness(0.5)";
+                        });
+                        buttonMin.addEventListener("mouseout", () => {
+                            document.getElementById("buttonIcon").style.filter = "brightness(1.0)";
+                        });
+                    } else {
+                        setTimeout(updateButtonMin, 100);
                     }
                 }
 

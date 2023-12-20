@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V40</div>
+        <div align="center">DevMerge BOT - V42</div>
 
         <script type='text/javascript'>
             
@@ -74,8 +74,12 @@
 
                 // Update minimized button
                 function updateButtonMin() {
-                    let buttonMin = document.querySelector(".minimizedButton");
+                    let buttonMin = document.querySelector(".minimizedButton,.testExist");
                     console.log('checkDOMChange: '+buttonMin);
+                    if(buttonMin = null) {
+                        console.log('still null');
+                        buttonMin = document.getElementById("minimizedButton-18");
+                    }
                     if(buttonMin != null) {
                         console.log('FOUND IT!');
                         buttonMin.style.right = "0";

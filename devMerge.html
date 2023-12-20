@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V20</div>
+        <div align="center">DevMerge BOT - V21</div>
 
         <script type='text/javascript'>
             
@@ -28,7 +28,6 @@
                 let changeMap = new Map();
                 changeMap.set("button", true);
                 changeMap.set("z-index", true);
-                console.log("Setting specs...");
                 let setChatSpecs = setInterval(function(){
                     // Set z-index
                     if(changeMap.get("z-index") && document.getElementById("embedded-messaging") != null){
@@ -38,22 +37,22 @@
                     }
                     // Set button
                     if(changeMap.get("button") && document.getElementById("embeddedMessagingConversationButton") != null){
-                        // Set icon
                         console.log("Setting button");
                         changeMap.set("button", false);
-                        //document.getElementById("embeddedMessagingIconContainer").style.display = "none";
+                        // Set size
+                        document.getElementById("embeddedMessagingConversationButton").style.width = "48px";
+                        document.getElementById("embeddedMessagingConversationButton").style.height = "48px";
+                        // Set icon
+                        document.getElementById("embeddedMessagingIconContainer").style.display = "none";
                         document.getElementById("embeddedMessagingConversationButton").style.boxShadow = "";
-
+                        
                         let img = document.createElement('img');
                         img.src = "IconTop+TextBelow-LG@1x.png";
-                        document.getElementById("embeddedMessagingIconContainer").appendChild(img);
+                        document.getElementById("embeddedMessagingConversationButtonWrapper").appendChild(img);//embeddedMessagingConversationButton
                         // Set position
                         /*document.getElementById("embeddedMessagingConversationButton").style.bottom = "0";
                         document.getElementById("embeddedMessagingConversationButton").style.right = "0";
                         document.getElementById("embeddedMessagingConversationButton").style.top = "280px";*/
-                        // Set size
-                        document.getElementById("embeddedMessagingConversationButton").style.width = "48px";
-                        document.getElementById("embeddedMessagingConversationButton").style.height = "48px";
                     }
                 }, 50);
                 setTimeout(function(){

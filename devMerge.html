@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V36</div>
+        <div align="center">DevMerge BOT - V37</div>
 
         <script type='text/javascript'>
             
@@ -50,9 +50,11 @@
                         // Set buttonWrapper
                         let buttonWrapper = document.querySelector(".embeddedMessagingConversationButtonWrapper");
                         buttonWrapper.addEventListener("mouseover", () => {
+                            updateButtonMin();
                             document.getElementById("buttonIcon").style.filter = "brightness(0.5)";
                         });
                         buttonWrapper.addEventListener("mouseout", () => {
+                            updateButtonMin();
                             document.getElementById("buttonIcon").style.filter = "brightness(1.0)";
                         });
                         buttonWrapper.appendChild(img);
@@ -70,7 +72,20 @@
                 }, 5000);
 
                 // Update minimized button
-                checkDOMChange();
+                function updateButtonMin() {
+                    let buttonMin = document.querySelector(".minimizedButton");
+                    console.log('checkDOMChange: '+buttonMin);
+                    if(buttonMin != null) {
+                        console.log('FOUND IT!');
+                        buttonMin.style.right = "0";
+                        buttonMin.style.width = "48px";
+                        buttonMin.style.height = "48px";
+                        buttonMin.style.boxShadow = "none";
+                    }
+                }
+
+                // Update minimized button
+                //checkDOMChange();
                 function checkDOMChange() {
                     let buttonMin = document.querySelector(".minimizedButton");
                     console.log('checkDOMChange: '+buttonMin);

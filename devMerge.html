@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V30</div>
+        <div align="center">DevMerge BOT - V31</div>
 
         <script type='text/javascript'>
             
@@ -50,11 +50,9 @@
                         // Set buttonWrapper
                         let buttonWrapper = document.querySelector(".embeddedMessagingConversationButtonWrapper");
                         buttonWrapper.addEventListener("mouseover", () => {
-                            console.log("mouseover: "+document.getElementById("buttonIcon"));
                             document.getElementById("buttonIcon").style.filter = "brightness(0.5)";
                         });
                         buttonWrapper.addEventListener("mouseout", () => {
-                            console.log("mouseout: "+document.getElementById("buttonIcon"));
                             document.getElementById("buttonIcon").style.filter = "brightness(1.0)";
                         });
                         buttonWrapper.appendChild(img);
@@ -65,11 +63,6 @@
                         button.style.width = "48px";
                         button.style.height = "48px";
                         button.style.boxShadow = "none";
-                        
-                        // Set position
-                        /*document.getElementById("embeddedMessagingConversationButton").style.bottom = "0";
-                        document.getElementById("embeddedMessagingConversationButton").style.right = "0";
-                        document.getElementById("embeddedMessagingConversationButton").style.top = "280px";*/
                     }
                 }, 50);
                 setTimeout(function(){

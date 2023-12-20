@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V45</div>
+        <div align="center">DevMerge BOT - V50</div>
 
         <script type='text/javascript'>
             
@@ -144,7 +144,7 @@
                     console.log('still null');
                     buttonMin = document.getElementById("minimizedButton-18");
                 }
-                console.log(document.body.serializeWithStyles());
+                printDOM();
                 if(buttonMin != null) {
                     console.log('FOUND IT!');
                     buttonMin.style.right = "0";
@@ -159,6 +159,20 @@
                     });
                 } else {
                     setTimeout(updateButtonMin2, 100);
+                }
+            }
+
+            function printDOM() {
+                var walker = document.createTreeWalker(
+                  document.documentElement,
+                  NodeFilter.SHOW_ELEMENT // only elements
+                );
+                while (walker.nextNode()) {
+                  let current = walker.currentNode;
+                  console.log(
+                    current.tagName,
+                    [...current.attributes].map(({value,name}) => `${name}=${value}`).join()
+                  );
                 }
             }
         </script>

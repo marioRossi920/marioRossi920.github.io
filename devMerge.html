@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V66</div>
+        <div align="center">DevMerge BOT - V70</div>
 
         <script type='text/javascript'>
             
@@ -56,7 +56,7 @@
                             document.getElementById("buttonIcon").style.filter = "brightness(1.0)";
                         });
                         buttonWrapper.addEventListener("click", () => {
-                            //setTimeout(updateButtonMin, 200);
+                            document.querySelector(".embeddedMessagingConversationButtonWrapper").style.display = "none";
                         });
                         buttonWrapper.appendChild(img);
                         buttonWrapper.style.boxShadow = "none";
@@ -71,47 +71,6 @@
                 setTimeout(function(){
                     clearInterval(setChatSpecs); 
                 }, 5000);
-
-                // Update minimized button
-                updateButtonMin();
-                function updateButtonMin() {
-                    let iframe = document.getElementById("embeddedMessagingFrame");
-                    let elmnt;
-                    if(iframe != null) elmnt = iframe.contentWindow.document.querySelector(".minimizedButton");
-                    let buttonMin = document.querySelector(".minimizedButton");
-                    console.log('checkDOMChange: '+buttonMin+', elmnt:'+elmnt+', iframe:'+iframe);
-                    if(buttonMin != null) {
-                        console.log('FOUND IT!');
-                        buttonMin.style.right = "0";
-                        buttonMin.style.width = "48px";
-                        buttonMin.style.height = "48px";
-                        buttonMin.style.boxShadow = "none";
-                        buttonMin.addEventListener("mouseover", () => {
-                            document.getElementById("buttonIcon").style.filter = "brightness(0.5)";
-                        });
-                        buttonMin.addEventListener("mouseout", () => {
-                            document.getElementById("buttonIcon").style.filter = "brightness(1.0)";
-                        });
-                    } else {
-                        setTimeout(updateButtonMin, 100);
-                    }
-                }
-
-                // Update minimized button
-                //checkDOMChange();
-                function checkDOMChange() {
-                    let buttonMin = document.querySelector(".minimizedButton");
-                    console.log('checkDOMChange: '+buttonMin);
-                    if(buttonMin != null) {
-                        console.log('FOUND IT!');
-                        buttonMin.style.right = "0";
-                        buttonMin.style.width = "48px";
-                        buttonMin.style.height = "48px";
-                        buttonMin.style.boxShadow = "none";
-                    } else {
-                        setTimeout(checkDOMChange, 100);
-                    }
-                }
             });
             
         	function initEmbeddedMessaging() {

@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V33</div>
+        <div align="center">DevMerge BOT - V35</div>
 
         <script type='text/javascript'>
             
@@ -63,19 +63,26 @@
                         button.style.width = "48px";
                         button.style.height = "48px";
                         button.style.boxShadow = "none";
-                        button.addEventListener("resize", () => {
-                            console.log('resized!');
-                            let buttonEvt = document.getElementById("embeddedMessagingConversationButton");
-                            buttonEvt.style.right = "0";
-                            buttonEvt.style.width = "48px";
-                            buttonEvt.style.height = "48px";
-                            buttonEvt.style.boxShadow = "none";
-                        });
                     }
                 }, 50);
                 setTimeout(function(){
                     clearInterval(setChatSpecs); 
                 }, 5000);
+
+                // Update minimized button
+                function checkDOMChange() {
+                    let buttonMin = document.querySelector(".minimizedButton");
+                    console.log('checkDOMChange: '+buttonMin);
+                    if(buttonMin != null) {
+                        console.log('FOUND IT!');
+                        buttonMin.style.right = "0";
+                        buttonMin.style.width = "48px";
+                        buttonMin.style.height = "48px";
+                        buttonMin.style.boxShadow = "none";
+                    } else {
+                        setTimeout(checkDOMChange, 100);
+                    }
+                }
             });
             
         	function initEmbeddedMessaging() {

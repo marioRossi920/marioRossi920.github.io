@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V50</div>
+        <div align="center">DevMerge BOT - V61</div>
 
         <script type='text/javascript'>
             
@@ -56,7 +56,7 @@
                             document.getElementById("buttonIcon").style.filter = "brightness(1.0)";
                         });
                         buttonWrapper.addEventListener("click", () => {
-                            setTimeout(updateButtonMin, 200);
+                            //setTimeout(updateButtonMin, 200);
                         });
                         buttonWrapper.appendChild(img);
                         buttonWrapper.style.boxShadow = "none";
@@ -73,13 +73,13 @@
                 }, 5000);
 
                 // Update minimized button
+                updateButtonMin();
                 function updateButtonMin() {
-                    let buttonMin = document.querySelector(".minimizedButton,.testExist");
-                    console.log('checkDOMChange: '+buttonMin);
-                    if(buttonMin == null) {
-                        console.log('still null');
-                        buttonMin = document.getElementById("minimizedButton-18");
-                    }
+                    embeddedMessagingFrame
+                    let iframe = document.getElementById("embeddedMessagingFrame");
+                    let elmnt = iframe.contentWindow.document.querySelector(".minimizedButton");
+                    let buttonMin = document.querySelector(".minimizedButton");
+                    console.log('checkDOMChange: '+buttonMin+', elmnt:'+elmnt+', iframe:'+iframe);
                     if(buttonMin != null) {
                         console.log('FOUND IT!');
                         buttonMin.style.right = "0";
@@ -132,53 +132,6 @@
         		}
         	};
         </script>
-
-
-        
-        <script>
-            setTimeout(updateButtonMin2, 100);
-            function updateButtonMin2() {
-                let buttonMin = document.querySelector(".minimizedButton,.testExist");
-                console.log('checkDOMChange: '+buttonMin);
-                if(buttonMin == null) {
-                    console.log('still null');
-                    buttonMin = document.getElementById("minimizedButton-18");
-                }
-                printDOM();
-                if(buttonMin != null) {
-                    console.log('FOUND IT!');
-                    buttonMin.style.right = "0";
-                    buttonMin.style.width = "48px";
-                    buttonMin.style.height = "48px";
-                    buttonMin.style.boxShadow = "none";
-                    buttonMin.addEventListener("mouseover", () => {
-                        document.getElementById("buttonIcon").style.filter = "brightness(0.5)";
-                    });
-                    buttonMin.addEventListener("mouseout", () => {
-                        document.getElementById("buttonIcon").style.filter = "brightness(1.0)";
-                    });
-                } else {
-                    setTimeout(updateButtonMin2, 100);
-                }
-            }
-
-            function printDOM() {
-                var walker = document.createTreeWalker(
-                  document.documentElement,
-                  NodeFilter.SHOW_ELEMENT // only elements
-                );
-                while (walker.nextNode()) {
-                  let current = walker.currentNode;
-                  console.log(
-                    current.tagName,
-                    [...current.attributes].map(({value,name}) => `${name}=${value}`).join()
-                  );
-                }
-            }
-        </script>
-
-
-        
         <script type='text/javascript' src='https://cgtspa--devmerge.sandbox.my.site.com/ESWCGTBotWebDeployment1697542037993/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
 
     </body>

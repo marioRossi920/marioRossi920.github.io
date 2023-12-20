@@ -6,7 +6,7 @@
     </head>
     <body>
         
-        <div align="center">DevMerge BOT - V37</div>
+        <div align="center">DevMerge BOT - V39</div>
 
         <script type='text/javascript'>
             
@@ -50,13 +50,25 @@
                         // Set buttonWrapper
                         let buttonWrapper = document.querySelector(".embeddedMessagingConversationButtonWrapper");
                         buttonWrapper.addEventListener("mouseover", () => {
-                            updateButtonMin();
                             document.getElementById("buttonIcon").style.filter = "brightness(0.5)";
                         });
                         buttonWrapper.addEventListener("mouseout", () => {
-                            updateButtonMin();
                             document.getElementById("buttonIcon").style.filter = "brightness(1.0)";
                         });
+                        
+                        buttonWrapper.addEventListener("click", () => {
+                            updateButtonMin();
+                            let buttonMin = document.querySelector(".minimizedButton");
+                            if(buttonMin != null) {
+                                buttonMin.addEventListener("mouseover", () => {
+                                    document.getElementById("buttonIcon").style.filter = "brightness(0.5)";
+                                });
+                                buttonMin.addEventListener("mouseout", () => {
+                                    document.getElementById("buttonIcon").style.filter = "brightness(1.0)";
+                                });
+                            }
+                        });
+                        
                         buttonWrapper.appendChild(img);
                         buttonWrapper.style.boxShadow = "none";
                         // Set button

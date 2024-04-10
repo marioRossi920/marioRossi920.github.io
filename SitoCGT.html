@@ -1,0 +1,237 @@
+<html>
+<title>OAuth Authorization Code + PKCE in Vanilla JS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<div class="flex-center full-height">
+    <div class="content">
+        <div id="buttonLogin">
+            <button type="button" onclick='initiateSSOFlow()'>Login!</button>
+        </div>
+        <div id="userOk" class="hidden">
+            <h2>Benvenuto</h2>
+            <div id="loginOk" class="code"></div>
+        </div>
+    </div>
+</div>  
+
+<script>
+
+//////////////////////////////////////////////////////////////////////
+//-- RENDER --//
+
+queryString = window.location.search;
+console.log('acess token after refresh' +localStorage.getItem("accToken"));
+urlParams = new URLSearchParams(queryString);
+// Controllo se è presente un access token
+if(localStorage.getItem("accToken") !== null){
+    getUserInfo(localStorage.getItem("accToken"), localStorage.getItem("commUrl"));
+}else if(urlParams.get('code') !== null){
+    console.log(queryString);
+    console.log('Loading Callback Params: ' + urlParams);
+    //Create the Code Response from the URL params
+    codeResponse = new Object;
+    codeResponse.code = urlParams.get('code');
+    codeResponse.state = urlParams.get('state');
+    codeResponse.sfdc_community_url = urlParams.get('sfdc_community_url');
+// Call the common token exhcange method.
+    tokenExchange(codeResponse, localStorage.getItem("pkce_code_verifier"), localStorage.getItem("clientId"), 'code', null);
+}
+async function initiateSSOFlow() {
+
+//-- Costanti & Variabili --//
+    const commUrl = 'https://cgtspa--devmerge.sandbox.my.site.com/CGTPortaleRegistrazioneClienti';
+    const authorizeURI = '/services/oauth2/authorize';
+    const clientId = '3MVG9bmlmX4LX1ZvlQPwDwh5N1fOBV4wLtXixm2uPy7urVdUASmTjYk.YlQ65RUOIlT8k8OVhqIRROaa2B9yf';
+    localStorage.setItem("clientId", clientId);
+    localStorage.setItem("commUrl", commUrl);
+    const redirectURI = 'https://cridolby.github.io/prima/'
+    const responsType = 'code';
+    const ssoProvider = 'AzureADB2CTest';
+
+//-- PCKE Generator --//
+
+    const codeVerifier = generateRandomString();
+    localStorage.setItem("pkce_code_verifier", codeVerifier);
+    console.log('codeVerifier: '+codeVerifier );
+        // Hash and base64-urlencode the secret to use as the challenge
+    const codeChallenge = await pkceChallengeFromVerifier(codeVerifier);
+    console.log('codeChallenge: '+codeChallenge );
+
+//-- Costruzione redirect --//
+    redirectURL = commUrl + authorizeURI +
+     '?client_id=' + clientId + 
+     '&redirect_uri=' + redirectURI + 
+     '&response_type=' + responsType +
+     '&sso_provider=' + ssoProvider + 
+     '&code_challenge=' + encodeURIComponent(codeChallenge) + 
+     '&code_verifier=' + encodeURIComponent(codeVerifier);
+
+//-- Redirect the Browser --//
+    window.location = redirectURL;
+}
+
+function parseQueryString(string) {
+    if(string == "") { return {}; }
+    var segments = string.split("&").map(s => s.split("=") );
+    var queryString = {};
+    segments.forEach(s => queryString[s[0]] = s[1]);
+    return queryString;
+}
+
+function generateRandomString() {
+    var array = new Uint32Array(28);
+    window.crypto.getRandomValues(array);
+    return Array.from(array, dec => ('0' + dec.toString(16)).substr(-2)).join('');
+}
+
+// Calculate the SHA256 hash of the input text. 
+// Returns a promise that resolves to an ArrayBuffer
+function sha256(plain) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(plain);
+    return window.crypto.subtle.digest('SHA-256', data);
+}
+
+// Base64-urlencodes the input string
+function base64urlencode(str) {
+    // Convert the ArrayBuffer to string using Uint8 array to conver to what btoa accepts.
+    // btoa accepts chars only within ascii 0-255 and base64 encodes them.
+    // Then convert the base64 encoded to base64url encoded
+    //   (replace + with -, replace / with _, trim trailing =)
+    return btoa(String.fromCharCode.apply(null, new Uint8Array(str)))
+        .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+// Return the base64-urlencoded sha256 hash for the PKCE challenge
+async function pkceChallengeFromVerifier(v) {
+    hashed = await sha256(v);
+    return base64urlencode(hashed);
+}
+
+
+function tokenExchange(response, codeVerifier, clientId, authorizeType, uniqueVisitorId) {
+    console.log('codeVerifier: ' +codeVerifier);
+    console.log('clientId: ' +clientId);
+    console.log('authorizeType: ' +authorizeType);
+    // Get Values from Code Response
+    code = response.code;
+    console.log('code: ' + code);
+    stateIdentifier = response.state;
+    console.log('stateIdentifier: ' + stateIdentifier);
+    baseURL = response.sfdc_community_url;
+    console.log('baseURL: ' + baseURL);
+    state = null;
+    const tokenURI = '/services/oauth2/token';
+    const callbackURL = 'https://cridolby.github.io/prima/';
+    const commUrl = 'https://cgtspa--devmerge.sandbox.my.site.com/CGTPortaleRegistrazioneClienti';
+    // validate state if it was present
+    if (stateIdentifier != null) {
+        state = getState(stateIdentifier, true);
+        if (state == null) {
+            onError("A state param was sent back but no state was found");
+            return;
+        }
+    }
+
+// Create Client
+    client = new XMLHttpRequest();
+    client.open("POST", commUrl + tokenURI, true);
+    client.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    client.setRequestHeader('Access-Control-Allow-Origin', 'https://cridolby.github.io');
+    client.setRequestHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+    client.setRequestHeader("Access-Control-Allow-Headers", "Content-Type");
+// Build Request Body
+    requestBody = "code=" + code + "&grant_type=authorization_code&client_id=" + clientId + "&redirect_uri=" + callbackURL;
+// Add PKCE
+    requestBody = requestBody + "&code_verifier=" + codeVerifier;
+    console.log('requestBody: ' +requestBody);
+// Send Request
+    client.send(requestBody);
+    client.onreadystatechange = function() {
+        if(this.readyState == 4) {
+            if (this.status == 200) {
+        //Access Tokens have been returned
+                console.log("Code and Credntial Flow, token response: ");
+                console.log(JSON.parse(client.response));
+                responseArr = JSON.parse(client.response)
+                console.log("Access Token: ");
+                console.log(responseArr.access_token);
+                localStorage.setItem("accToken", responseArr.access_token);
+                getUserInfo(responseArr.access_token, commUrl);
+            } else {
+                client.onError = function(){
+                  error(client, {});
+                }
+            }
+        }
+    }
+}
+
+function getUserInfo(accessToken, expDomain) {
+    userInfoURI = '/services/oauth2/userinfo';
+    client = new XMLHttpRequest();
+    client.open("GET", expDomain + userInfoURI, true);
+    client.setRequestHeader("Content-Type", "application/json");
+    client.setRequestHeader("Authorization", 'Bearer ' + accessToken);
+    client.send();
+    client.onreadystatechange = function() {
+        if(this.readyState == 4) {
+            if (this.status == 200) {
+            //User Info response
+            console.log(client.response);
+            userArr = JSON.parse(client.response)
+            document.getElementById("loginOk").innerText = userArr.name;
+            document.getElementById("buttonLogin").classList = "hidden";
+            document.getElementById("userOk").classList = "";
+            } else {
+                console.log(client.response)
+                //onError("An Error Occured during Forgot Password Step: " +
+                //forgotPasswordProcessStep, client.response);
+            }
+        }
+    }
+}
+
+
+</script>
+
+<style>
+body {
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  font-family: arial, sans-serif;
+}
+@media(max-width: 400px) {
+  body {
+    padding: 10px;
+  }
+}
+.full-height {
+  min-height: 100vh;
+}
+.flex-center {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.content {
+  max-width: 400px;
+}
+h2 {
+  text-align: center;
+}
+.code {
+  font-family: "Courier New", "Courier", monospace;
+  width: 100%;
+  padding: 4px;
+  border: 1px #ccc solid;
+  border-radius: 4px;
+  word-break: break-all;
+}
+.hidden {
+  display: none;
+}
+</style>
+
+</html>

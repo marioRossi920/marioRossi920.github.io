@@ -1,0 +1,93 @@
+<html>
+    <head> 
+        <script src="./cgt_conn_sfdc_const_s1.0.js" ></script>
+        <script src="./cgt_conn_sfdc_s1.0.js"></script>
+        <title>Test Interno SITO CGT LOGIN</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    </head>
+    <body>
+        <h1> Sito CGT!</h1>
+        <a href="/prima/secondaPagina.html">Seconda Pagina</a>
+        <div class="flex-center full-height">
+            <div class="content">
+                <div id="buttonLogin">
+                    <button type="button" onclick='initiateSSOFlow()'>Login!</button>
+                </div>
+                <div id="userOk" class="hidden">
+                    <h2>Benvenuto</h2>
+                    <div id="loginOk" class="code"></div>
+                    <button type="button" onclick='logoutUser()'>LOGOUT</button>
+                </div>
+            </div>
+        </div>
+    <script>
+
+//////////////////////////////////////////////////////////////////////
+//-- RENDER --//
+
+queryString = window.location.search;
+urlParams = new URLSearchParams(queryString);
+accToken = getCookie("SFToken");
+console.log('acess token after refresh' +accToken);
+//console.log(document.cookie);
+// Controllo se è presente un access token
+if(accToken !== ""){
+    try {
+      getUserInfo(accToken);
+    } catch (error) {
+        document.cookie = "SFToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC;  path=/";
+    }
+}else if(urlParams.get('code') !== null){
+    console.log(queryString);
+    console.log('Loading Callback Params: ' + urlParams);
+    //Create the Code Response from the URL params
+    codeResponse = new Object;
+    codeResponse.code = urlParams.get('code');
+    codeResponse.state = urlParams.get('state');
+    codeResponse.sfdc_community_url = urlParams.get('sfdc_community_url');
+// Call the common token exhcange method.
+    tokenExchange(codeResponse, localStorage.getItem("pkce_code_verifier"));
+}
+
+
+    </script>
+    <style>
+        body {
+          padding: 0;
+          margin: 0;
+          min-height: 100vh;
+          font-family: arial, sans-serif;
+        }
+        @media(max-width: 400px) {
+          body {
+            padding: 10px;
+          }
+        }
+        .full-height {
+          min-height: 100vh;
+        }
+        .flex-center {
+          align-items: center;
+          display: flex;
+          justify-content: center;
+        }
+        .content {
+          max-width: 400px;
+        }
+        h2 {
+          text-align: center;
+        }
+        .code {
+          font-family: "Courier New", "Courier", monospace;
+          width: 100%;
+          padding: 4px;
+          border: 1px #ccc solid;
+          border-radius: 4px;
+          word-break: break-all;
+        }
+        .hidden {
+          display: none;
+        }
+        </style>
+    </body>
+</html>

@@ -81,9 +81,8 @@
 
 	// Chat init
 	function initEmbeddedMessaging() {
-        	console.log('Inside main function');
+        	console.log('initEmbeddedMessaging');
 		try {
-            		console.log('Inside try');
 			embeddedservice_bootstrap.settings.language = 'it'; // Set language with JavaScript
 
 			embeddedservice_bootstrap.init(
@@ -94,7 +93,6 @@
 					scrt2URL: 'https://cgtspa.my.salesforce-scrt.com'
 				}
 			);
-			console.log('After try');
 		} catch (err) {
 			console.error('Error loading Embedded Messaging: ', err);
 		}

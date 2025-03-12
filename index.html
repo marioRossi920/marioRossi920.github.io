@@ -19,7 +19,7 @@
 		changeMap.set("button", true);
 		changeMap.set("z-index", true);
 		let setChatSpecs = setInterval(function(){
-            console.error('Inside setChatSpecs');
+            		console.log('Inside setChatSpecs');
 			// Set z-index
 			if(changeMap.get("z-index") && document.getElementById("embedded-messaging") != null){
 				console.log("Setting z-index");
@@ -69,9 +69,9 @@
 
 	// Chat init
 	function initEmbeddedMessaging() {
-        console.error('Inside main function');
+        	console.log('Inside main function');
 		try {
-            console.error('Inside try');
+            		console.log('Inside try');
 			embeddedservice_bootstrap.settings.language = 'it'; // Set language with JavaScript
 
 			embeddedservice_bootstrap.init(
@@ -82,6 +82,7 @@
 					scrt2URL: 'https://cgtspa.my.salesforce-scrt.com'
 				}
 			);
+			console.log('After try');
 		} catch (err) {
 			console.error('Error loading Embedded Messaging: ', err);
 		}

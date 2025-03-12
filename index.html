@@ -1,102 +1,28 @@
 <html>
- 
     <head>
- 
         <title>Chatbot_GitHub</title>
- 
         <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
- 
     </head>
  
     <body>
-	<div align="center">Production BOT (index)</div>
 	<script type='text/javascript'>
-    
-	// Pre-chat event listener
-	window.addEventListener("onEmbeddedMessagingReady", () => {
-		console.log("Received the onEmbeddedMessagingReady event");
+		function initEmbeddedMessaging() {
+			try {
+				console.log('Second attempt');
+				embeddedservice_bootstrap.settings.language = 'it'; // For example, enter 'en' or 'en-US'
 	
-		// Fill these values through JavaScript to send data to Salesforce
-		// All fields must be of type String and no longer than 100 characters
-		embeddedservice_bootstrap.prechatAPI.setHiddenPrechatFields({
-			"UserId" : "", // CAT User Identifier (Unique Key)
-			"AccountId" : "", // CAT Customer Identifier (Unique Key)
-			"FirstName" : "", // User First Name
-			"LastName" : "", // User Last Name
-			"Email" : "" // User Email
-		});
-
-		// Set ChatBot Specs
-		let changeMap = new Map();
-		changeMap.set("button", true);
-		changeMap.set("z-index", true);
-		let setChatSpecs = setInterval(function(){
-            		console.log('Inside setChatSpecs');
-			// Set z-index
-			if(changeMap.get("z-index") && document.getElementById("embedded-messaging") != null){
-				console.log("Setting z-index");
-				changeMap.set("z-index", false);
-				document.getElementById("embedded-messaging").style.zindex = "1000";
+				embeddedservice_bootstrap.init(
+					'00DDn00000AvYTz',
+					'CGT_Bot_Web_Deployment',
+					'https://cgtspa.my.site.com/ESWCGTBotWebDeployment1697542037993',
+					{
+						scrt2URL: 'https://cgtspa.my.salesforce-scrt.com'
+					}
+				);
+			} catch (err) {
+				console.error('Error loading Embedded Messaging: ', err);
 			}
-			// Set Chat icon
-			if(changeMap.get("button") && document.getElementById("embeddedMessagingConversationButton") != null){
-				console.log("Setting button");
-				changeMap.set("button", false);
-				// Create icon
-				let img = document.createElement('img');
-				img.src = "https://cgtspa--devmerge.sandbox.my.site.com/ChatBotAssets/webruntime/org-asset/ab0d1020cb/resource/081DH0000017RJY";
-				img.style.background = "rgba(0, 0, 0, 1)";
-				img.style.pointerEvents = "none";
-				img.style.position = "fixed";
-				img.style.right = "0px";
-				img.style.top = "340px";
-				img.id = "buttonIcon";
-				// Set buttonWrapper
-				let buttonWrapper = document.querySelector(".embeddedMessagingConversationButtonWrapper");
-				buttonWrapper.addEventListener("mouseover", () => {
-					document.getElementById("buttonIcon").style.filter = "brightness(0.5)";
-				});
-				buttonWrapper.addEventListener("mouseout", () => {
-					document.getElementById("buttonIcon").style.filter = "brightness(1.0)";
-				});
-				buttonWrapper.addEventListener("click", () => {
-					document.querySelector(".embeddedMessagingConversationButtonWrapper").style.display = "none";
-				});
-				buttonWrapper.appendChild(img);
-				buttonWrapper.style.boxShadow = "none";
-				buttonWrapper.style.background = "rgba(0, 0, 0, 0)";
-				// Set button
-				let button = document.getElementById("embeddedMessagingConversationButton");
-				button.style.top = "340px";
-				button.style.right = "0px";
-				button.style.width = "48px";
-				button.style.height = "48px";
-				button.style.boxShadow = "none";
-			}
-		}, 5);
-		setTimeout(function(){
-			clearInterval(setChatSpecs); 
-		}, 5000);
-	});
-
-	// Chat init
-	function initEmbeddedMessaging() {
-        	console.log('initEmbeddedMessaging');
-		try {
-			embeddedservice_bootstrap.settings.language = 'it'; // Set language with JavaScript
-
-			embeddedservice_bootstrap.init(
-				'00DDn00000AvYTz',
-				'CGT_Bot_Web_Deployment',
-				'https://cgtspa.my.site.com/ESWCGTBotWebDeployment1697542037993',
-				{
-					scrt2URL: 'https://cgtspa.my.salesforce-scrt.com'
-				}
-			);
-		} catch (err) {
-			console.error('Error loading Embedded Messaging: ', err);
-		}
-	};
+		};
 	</script>
 	<script type='text/javascript' src='https://cgtspa.my.site.com/ESWCGTBotWebDeployment1697542037993/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
     </body>

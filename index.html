@@ -5,25 +5,26 @@
     </head>
  
     <body>
-	<div>BOT CASE</div>
+	<div>BOT LEAD</div>
 	<script type='text/javascript'>
-		function initEmbeddedMessaging() {
-			try {
-				embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
-	
-				embeddedservice_bootstrap.init(
-					'00DDn00000AvYTz',
-					'CGT_Bot_Web_Deployment',
-					'https://cgtspa.my.site.com/ESWCGTBotWebDeployment1697542037993',
-					{
-						scrt2URL: 'https://cgtspa.my.salesforce-scrt.com'
-					}
-				);
-			} catch (err) {
-				console.error('Error loading Embedded Messaging: ', err);
-			}
-		};
-	</script>
-	<script type='text/javascript' src='https://cgtspa.my.site.com/ESWCGTBotWebDeployment1697542037993/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+	function initEmbeddedMessaging() {
+		try {
+			embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+
+			embeddedservice_bootstrap.init(
+				'00DDn00000AvYTz',
+				'CGT_Bot_Web_Lead',
+				'https://cgtspa.my.site.com/ESWCGTBotWebLead1737368192903',
+				{
+					scrt2URL: 'https://cgtspa.my.salesforce-scrt.com'
+				}
+			);
+		} catch (err) {
+			console.error('Error loading Embedded Messaging: ', err);
+		}
+	};
+</script>
+<script type='text/javascript' src='https://cgtspa.my.site.com/ESWCGTBotWebLead1737368192903/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
     </body>
 </html>
+
